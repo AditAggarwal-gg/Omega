@@ -1,0 +1,32 @@
+{
+  "name": "omega",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "generate": "nuxt generate",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "lint": "eslint .",
+    "db:types": "supabase gen types --lang=typescript --local > app/types/database.types.ts"
+  },
+  "dependencies": {
+    "@nuxtjs/supabase": "^2.0.9",
+    "@pinia/nuxt": "^0.9.0",
+    "@supabase/supabase-js": "^2.49.0",
+    "pinia": "^2.3.1",
+    "nuxt": "^4.5.1",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^0.7.5",
+    "@nuxtjs/tailwindcss": "^6.13.1",
+    "@vite-pwa/nuxt": "^0.10.6",
+    "@tailwindcss/typography": "^0.5.15",
+    "eslint": "^9.17.0",
+    "typescript": "^5.7.2"
+  }
+}
