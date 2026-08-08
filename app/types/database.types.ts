@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.15"
+    PostgrestVersion: '14.15'
   }
   public: {
     Tables: {
@@ -44,11 +44,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "analytics_events_org_id_fkey"
-            columns: ["org_id"]
+            foreignKeyName: 'analytics_events_org_id_fkey'
+            columns: ['org_id']
             isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
+            referencedRelation: 'organizations'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -64,10 +64,10 @@ export type Database = {
           org_id: string
           published_at: string | null
           slug: string
-          status: Database["public"]["Enums"]["content_status"]
+          status: Database['public']['Enums']['content_status']
           summary: string | null
           title: string
-          type: Database["public"]["Enums"]["content_type"]
+          type: Database['public']['Enums']['content_type']
           updated_at: string
         }
         Insert: {
@@ -81,10 +81,10 @@ export type Database = {
           org_id: string
           published_at?: string | null
           slug: string
-          status?: Database["public"]["Enums"]["content_status"]
+          status?: Database['public']['Enums']['content_status']
           summary?: string | null
           title: string
-          type: Database["public"]["Enums"]["content_type"]
+          type: Database['public']['Enums']['content_type']
           updated_at?: string
         }
         Update: {
@@ -98,26 +98,26 @@ export type Database = {
           org_id?: string
           published_at?: string | null
           slug?: string
-          status?: Database["public"]["Enums"]["content_status"]
+          status?: Database['public']['Enums']['content_status']
           summary?: string | null
           title?: string
-          type?: Database["public"]["Enums"]["content_type"]
+          type?: Database['public']['Enums']['content_type']
           updated_at?: string
         }
         Relationships: [
           {
-            foreignKeyName: "content_items_author_id_fkey"
-            columns: ["author_id"]
+            foreignKeyName: 'content_items_author_id_fkey'
+            columns: ['author_id']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "content_items_org_id_fkey"
-            columns: ["org_id"]
+            foreignKeyName: 'content_items_org_id_fkey'
+            columns: ['org_id']
             isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
+            referencedRelation: 'organizations'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -130,7 +130,7 @@ export type Database = {
           id: string
           invited_by: string
           org_id: string
-          role: Database["public"]["Enums"]["org_role"]
+          role: Database['public']['Enums']['org_role']
           token: string
         }
         Insert: {
@@ -141,7 +141,7 @@ export type Database = {
           id?: string
           invited_by: string
           org_id: string
-          role?: Database["public"]["Enums"]["org_role"]
+          role?: Database['public']['Enums']['org_role']
           token?: string
         }
         Update: {
@@ -152,23 +152,23 @@ export type Database = {
           id?: string
           invited_by?: string
           org_id?: string
-          role?: Database["public"]["Enums"]["org_role"]
+          role?: Database['public']['Enums']['org_role']
           token?: string
         }
         Relationships: [
           {
-            foreignKeyName: "invites_invited_by_fkey"
-            columns: ["invited_by"]
+            foreignKeyName: 'invites_invited_by_fkey'
+            columns: ['invited_by']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "invites_org_id_fkey"
-            columns: ["org_id"]
+            foreignKeyName: 'invites_org_id_fkey'
+            columns: ['org_id']
             isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
+            referencedRelation: 'organizations'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -177,40 +177,40 @@ export type Database = {
           created_at: string
           invited_email: string | null
           org_id: string
-          role: Database["public"]["Enums"]["org_role"]
-          status: Database["public"]["Enums"]["membership_status"]
+          role: Database['public']['Enums']['org_role']
+          status: Database['public']['Enums']['membership_status']
           user_id: string
         }
         Insert: {
           created_at?: string
           invited_email?: string | null
           org_id: string
-          role?: Database["public"]["Enums"]["org_role"]
-          status?: Database["public"]["Enums"]["membership_status"]
+          role?: Database['public']['Enums']['org_role']
+          status?: Database['public']['Enums']['membership_status']
           user_id: string
         }
         Update: {
           created_at?: string
           invited_email?: string | null
           org_id?: string
-          role?: Database["public"]["Enums"]["org_role"]
-          status?: Database["public"]["Enums"]["membership_status"]
+          role?: Database['public']['Enums']['org_role']
+          status?: Database['public']['Enums']['membership_status']
           user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "memberships_org_id_fkey"
-            columns: ["org_id"]
+            foreignKeyName: 'memberships_org_id_fkey'
+            columns: ['org_id']
             isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
+            referencedRelation: 'organizations'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "memberships_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: 'memberships_user_id_fkey'
+            columns: ['user_id']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -241,11 +241,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "organizations_created_by_fkey"
-            columns: ["created_by"]
+            foreignKeyName: 'organizations_created_by_fkey'
+            columns: ['created_by']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -255,7 +255,7 @@ export type Database = {
           current_period_end: string | null
           id: string
           org_id: string
-          status: Database["public"]["Enums"]["subscription_status"]
+          status: Database['public']['Enums']['subscription_status']
           user_id: string
         }
         Insert: {
@@ -263,7 +263,7 @@ export type Database = {
           current_period_end?: string | null
           id?: string
           org_id: string
-          status?: Database["public"]["Enums"]["subscription_status"]
+          status?: Database['public']['Enums']['subscription_status']
           user_id: string
         }
         Update: {
@@ -271,23 +271,23 @@ export type Database = {
           current_period_end?: string | null
           id?: string
           org_id?: string
-          status?: Database["public"]["Enums"]["subscription_status"]
+          status?: Database['public']['Enums']['subscription_status']
           user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "premium_subscriptions_org_id_fkey"
-            columns: ["org_id"]
+            foreignKeyName: 'premium_subscriptions_org_id_fkey'
+            columns: ['org_id']
             isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
+            referencedRelation: 'organizations'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "premium_subscriptions_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: 'premium_subscriptions_user_id_fkey'
+            columns: ['user_id']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -323,11 +323,11 @@ export type Database = {
           flagged_url: string | null
           id: string
           org_id: string | null
-          reason: Database["public"]["Enums"]["report_reason"]
+          reason: Database['public']['Enums']['report_reason']
           reporter_id: string | null
           reviewed_at: string | null
           reviewed_by: string | null
-          status: Database["public"]["Enums"]["report_status"]
+          status: Database['public']['Enums']['report_status']
         }
         Insert: {
           content_id?: string | null
@@ -336,11 +336,11 @@ export type Database = {
           flagged_url?: string | null
           id?: string
           org_id?: string | null
-          reason: Database["public"]["Enums"]["report_reason"]
+          reason: Database['public']['Enums']['report_reason']
           reporter_id?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
-          status?: Database["public"]["Enums"]["report_status"]
+          status?: Database['public']['Enums']['report_status']
         }
         Update: {
           content_id?: string | null
@@ -349,40 +349,40 @@ export type Database = {
           flagged_url?: string | null
           id?: string
           org_id?: string | null
-          reason?: Database["public"]["Enums"]["report_reason"]
+          reason?: Database['public']['Enums']['report_reason']
           reporter_id?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
-          status?: Database["public"]["Enums"]["report_status"]
+          status?: Database['public']['Enums']['report_status']
         }
         Relationships: [
           {
-            foreignKeyName: "reports_content_id_fkey"
-            columns: ["content_id"]
+            foreignKeyName: 'reports_content_id_fkey'
+            columns: ['content_id']
             isOneToOne: false
-            referencedRelation: "content_items"
-            referencedColumns: ["id"]
+            referencedRelation: 'content_items'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "reports_org_id_fkey"
-            columns: ["org_id"]
+            foreignKeyName: 'reports_org_id_fkey'
+            columns: ['org_id']
             isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
+            referencedRelation: 'organizations'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "reports_reporter_id_fkey"
-            columns: ["reporter_id"]
+            foreignKeyName: 'reports_reporter_id_fkey'
+            columns: ['reporter_id']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "reports_reviewed_by_fkey"
-            columns: ["reviewed_by"]
+            foreignKeyName: 'reports_reviewed_by_fkey'
+            columns: ['reviewed_by']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -397,19 +397,19 @@ export type Database = {
           created_at: string
           invited_email: string | null
           org_id: string
-          role: Database["public"]["Enums"]["org_role"]
-          status: Database["public"]["Enums"]["membership_status"]
+          role: Database['public']['Enums']['org_role']
+          status: Database['public']['Enums']['membership_status']
           user_id: string
         }
         SetofOptions: {
-          from: "*"
-          to: "memberships"
+          from: '*'
+          to: 'memberships'
           isOneToOne: true
           isSetofReturn: false
         }
       }
       create_organization: {
-        Args: { p_name: string; p_slug: string }
+        Args: { p_name: string, p_slug: string }
         Returns: {
           created_at: string
           created_by: string | null
@@ -419,8 +419,8 @@ export type Database = {
           slug: string
         }
         SetofOptions: {
-          from: "*"
-          to: "organizations"
+          from: '*'
+          to: 'organizations'
           isOneToOne: true
           isSetofReturn: false
         }
@@ -432,11 +432,11 @@ export type Database = {
           is_accepted: boolean
           is_expired: boolean
           org_name: string
-          role: Database["public"]["Enums"]["org_role"]
+          role: Database['public']['Enums']['org_role']
         }[]
       }
       get_published_content: {
-        Args: { p_org_slug: string; p_slug: string }
+        Args: { p_org_slug: string, p_slug: string }
         Returns: {
           cover_image_url: string
           id: string
@@ -449,17 +449,17 @@ export type Database = {
           slug: string
           summary: string
           title: string
-          type: Database["public"]["Enums"]["content_type"]
+          type: Database['public']['Enums']['content_type']
         }[]
       }
-      has_premium_access: { Args: { target_org: string }; Returns: boolean }
-      is_org_manager: { Args: { target_org: string }; Returns: boolean }
-      is_org_member: { Args: { target_org: string }; Returns: boolean }
-      is_platform_admin: { Args: never; Returns: boolean }
+      has_premium_access: { Args: { target_org: string }, Returns: boolean }
+      is_org_manager: { Args: { target_org: string }, Returns: boolean }
+      is_org_member: { Args: { target_org: string }, Returns: boolean }
+      is_platform_admin: { Args: never, Returns: boolean }
       list_published_content: {
         Args: {
           p_org_slug?: string
-          p_type?: Database["public"]["Enums"]["content_type"]
+          p_type?: Database['public']['Enums']['content_type']
         }
         Returns: {
           cover_image_url: string
@@ -473,15 +473,15 @@ export type Database = {
           slug: string
           summary: string
           title: string
-          type: Database["public"]["Enums"]["content_type"]
+          type: Database['public']['Enums']['content_type']
         }[]
       }
       org_role: {
         Args: { target_org: string }
-        Returns: Database["public"]["Enums"]["org_role"]
+        Returns: Database['public']['Enums']['org_role']
       }
       set_platform_admin: {
-        Args: { make_admin: boolean; target_user: string }
+        Args: { make_admin: boolean, target_user: string }
         Returns: {
           avatar_url: string | null
           created_at: string
@@ -490,27 +490,27 @@ export type Database = {
           is_platform_admin: boolean
         }
         SetofOptions: {
-          from: "*"
-          to: "profiles"
+          from: '*'
+          to: 'profiles'
           isOneToOne: true
           isSetofReturn: false
         }
       }
     }
     Enums: {
-      content_status: "draft" | "published" | "archived"
-      content_type: "article" | "video" | "audio"
-      membership_status: "invited" | "active" | "removed"
-      org_role: "owner" | "manager" | "member"
+      content_status: 'draft' | 'published' | 'archived'
+      content_type: 'article' | 'video' | 'audio'
+      membership_status: 'invited' | 'active' | 'removed'
+      org_role: 'owner' | 'manager' | 'member'
       report_reason:
-        | "spam"
-        | "abuse"
-        | "copyright"
-        | "broken_link"
-        | "misinformation"
-        | "other"
-      report_status: "open" | "reviewing" | "resolved" | "dismissed"
-      subscription_status: "active" | "canceled" | "past_due"
+        | 'spam'
+        | 'abuse'
+        | 'copyright'
+        | 'broken_link'
+        | 'misinformation'
+        | 'other'
+      report_status: 'open' | 'reviewing' | 'resolved' | 'dismissed'
+      subscription_status: 'active' | 'canceled' | 'past_due'
     }
     CompositeTypes: {
       [_ in never]: never
@@ -518,140 +518,140 @@ export type Database = {
   }
 }
 
-type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+type DatabaseWithoutInternals = Omit<Database, '__InternalSupabase'>
 
-type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, 'public'>]
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
-    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
-    | { schema: keyof DatabaseWithoutInternals },
+  | keyof (DefaultSchema['Tables'] & DefaultSchema['Views'])
+  | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
-    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables'] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Views'])
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
-  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables'] &
+    DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Views'])[TableName] extends {
       Row: infer R
     }
-    ? R
-    : never
-  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
-        DefaultSchema["Views"])
-    ? (DefaultSchema["Tables"] &
-        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
-        Row: infer R
-      }
       ? R
       : never
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema['Tables'] &
+    DefaultSchema['Views'])
+    ? (DefaultSchema['Tables'] &
+      DefaultSchema['Views'])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+        ? R
+        : never
     : never
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
+  | keyof DefaultSchema['Tables']
+  | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
-    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
-  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
-    }
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables'][TableName] extends {
+    Insert: infer I
+  }
     ? I
     : never
-  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Insert: infer I
-      }
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema['Tables']
+    ? DefaultSchema['Tables'][DefaultSchemaTableNameOrOptions] extends {
+      Insert: infer I
+    }
       ? I
       : never
     : never
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
+  | keyof DefaultSchema['Tables']
+  | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
-    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
-  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
-    }
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables'][TableName] extends {
+    Update: infer U
+  }
     ? U
     : never
-  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Update: infer U
-      }
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema['Tables']
+    ? DefaultSchema['Tables'][DefaultSchemaTableNameOrOptions] extends {
+      Update: infer U
+    }
       ? U
       : never
     : never
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
-    | keyof DefaultSchema["Enums"]
-    | { schema: keyof DatabaseWithoutInternals },
+  | keyof DefaultSchema['Enums']
+  | { schema: keyof DatabaseWithoutInternals },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
-    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions['schema']]['Enums']
     : never = never,
 > = DefaultSchemaEnumNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
-  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
-    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions['schema']]['Enums'][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema['Enums']
+    ? DefaultSchema['Enums'][DefaultSchemaEnumNameOrOptions]
     : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
-    | keyof DefaultSchema["CompositeTypes"]
-    | { schema: keyof DatabaseWithoutInternals },
+  | keyof DefaultSchema['CompositeTypes']
+  | { schema: keyof DatabaseWithoutInternals },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
-    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions['schema']]['CompositeTypes']
     : never = never,
 > = PublicCompositeTypeNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
-  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
-  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
-    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions['schema']]['CompositeTypes'][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema['CompositeTypes']
+    ? DefaultSchema['CompositeTypes'][PublicCompositeTypeNameOrOptions]
     : never
 
 export const Constants = {
   public: {
     Enums: {
-      content_status: ["draft", "published", "archived"],
-      content_type: ["article", "video", "audio"],
-      membership_status: ["invited", "active", "removed"],
-      org_role: ["owner", "manager", "member"],
+      content_status: ['draft', 'published', 'archived'],
+      content_type: ['article', 'video', 'audio'],
+      membership_status: ['invited', 'active', 'removed'],
+      org_role: ['owner', 'manager', 'member'],
       report_reason: [
-        "spam",
-        "abuse",
-        "copyright",
-        "broken_link",
-        "misinformation",
-        "other",
+        'spam',
+        'abuse',
+        'copyright',
+        'broken_link',
+        'misinformation',
+        'other',
       ],
-      report_status: ["open", "reviewing", "resolved", "dismissed"],
-      subscription_status: ["active", "canceled", "past_due"],
+      report_status: ['open', 'reviewing', 'resolved', 'dismissed'],
+      subscription_status: ['active', 'canceled', 'past_due'],
     },
   },
 } as const

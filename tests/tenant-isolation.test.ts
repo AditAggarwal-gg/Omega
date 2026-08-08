@@ -1,14 +1,14 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import {
   adminClient, clientAsUser, createTestUser, deleteTestUser,
-  createTestOrg, deleteTestOrg
+  createTestOrg, deleteTestOrg,
 } from './helpers'
 
 describe('tenant isolation', () => {
   let userA: Awaited<ReturnType<typeof createTestUser>>
   let userB: Awaited<ReturnType<typeof createTestUser>>
-  let orgA: { id: string; slug: string }
-  let orgB: { id: string; slug: string }
+  let orgA: { id: string, slug: string }
+  let orgB: { id: string, slug: string }
   let privateContentId: string
 
   beforeAll(async () => {
@@ -30,7 +30,7 @@ describe('tenant isolation', () => {
         title: 'Org A internal draft',
         slug: 'org-a-internal-draft',
         body: 'Should never be visible to User B.',
-        status: 'draft'
+        status: 'draft',
       })
       .select('id')
       .single()
@@ -74,7 +74,7 @@ describe('tenant isolation', () => {
       type: 'article',
       title: 'Injected by an outsider',
       slug: 'injected',
-      status: 'draft'
+      status: 'draft',
     })
 
     expect(error).not.toBeNull()

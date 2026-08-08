@@ -1,13 +1,13 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import {
   adminClient, clientAsUser, createTestUser, deleteTestUser,
-  createTestOrg, deleteTestOrg
+  createTestOrg, deleteTestOrg,
 } from './helpers'
 
 describe('premium content gating', () => {
   let owner: Awaited<ReturnType<typeof createTestUser>>
   let outsider: Awaited<ReturnType<typeof createTestUser>>
-  let org: { id: string; slug: string }
+  let org: { id: string, slug: string }
   let premiumSlug: string
 
   beforeAll(async () => {
@@ -28,7 +28,7 @@ describe('premium content gating', () => {
       body: 'The real body — only entitled users should ever see this.',
       is_premium: true,
       status: 'published',
-      published_at: new Date().toISOString()
+      published_at: new Date().toISOString(),
     })
     if (error) throw error
   })
@@ -43,7 +43,7 @@ describe('premium content gating', () => {
     const outsiderClient = await clientAsUser(outsider.email, outsider.password)
     const { data, error } = await outsiderClient.rpc('get_published_content', {
       p_org_slug: org.slug,
-      p_slug: premiumSlug
+      p_slug: premiumSlug,
     })
     expect(error).toBeNull()
     const row = Array.isArray(data) ? data[0] : data
@@ -65,13 +65,13 @@ describe('premium content gating', () => {
     await adminClient.from('premium_subscriptions').insert({
       org_id: org.id,
       user_id: outsider.id,
-      status: 'active'
+      status: 'active',
     })
 
     const outsiderClient = await clientAsUser(outsider.email, outsider.password)
     const { data: teaser } = await outsiderClient.rpc('get_published_content', {
       p_org_slug: org.slug,
-      p_slug: premiumSlug
+      p_slug: premiumSlug,
     })
     const row = Array.isArray(teaser) ? teaser[0] : teaser
     expect(row.locked).toBe(false)

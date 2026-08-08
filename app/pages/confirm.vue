@@ -1,10 +1,20 @@
 <template>
   <section class="max-w-md mx-auto px-6 py-24 text-center">
     <div class="signal-dot mx-auto mb-6" />
-    <p v-if="!errorMessage" class="text-paper-200">Confirming your account…</p>
+    <p
+      v-if="!errorMessage"
+      class="text-paper-200"
+    >
+      Confirming your account…
+    </p>
     <template v-else>
-      <p class="text-danger-500 mb-4">{{ errorMessage }}</p>
-      <NuxtLink to="/login" class="text-signal-500 hover:underline">Go to sign in</NuxtLink>
+      <p class="text-danger-500 mb-4">
+        {{ errorMessage }}
+      </p>
+      <NuxtLink
+        to="/login"
+        class="text-signal-500 hover:underline"
+      >Go to sign in</NuxtLink>
     </template>
   </section>
 </template>
@@ -26,7 +36,7 @@ onMounted(async () => {
       router.replace(next)
       return
     }
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    await new Promise(resolve => setTimeout(resolve, 500))
   }
 
   errorMessage.value = 'This confirmation link may have expired or already been used. Try signing in directly.'

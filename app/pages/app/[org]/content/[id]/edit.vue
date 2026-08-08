@@ -1,58 +1,132 @@
 <template>
   <section class="max-w-2xl mx-auto px-6 py-12">
-    <p class="badge mb-2">EDIT CONTENT</p>
-    <h1 class="text-3xl mb-8">{{ membership?.organizations.name }}</h1>
+    <p class="badge mb-2">
+      EDIT CONTENT
+    </p>
+    <h1 class="text-3xl mb-8">
+      {{ membership?.organizations.name }}
+    </h1>
 
-    <div v-if="pending" class="text-paper-400">Loading…</div>
+    <div
+      v-if="pending"
+      class="text-paper-400"
+    >
+      Loading…
+    </div>
 
-    <form v-else-if="item" class="card p-6 space-y-4" @submit.prevent="save">
+    <form
+      v-else-if="item"
+      class="card p-6 space-y-4"
+      @submit.prevent="save"
+    >
       <div>
-        <label class="block text-sm text-paper-200 mb-1" for="title">Title</label>
-        <input id="title" v-model="item.title" type="text" required
-          class="w-full rounded-md bg-ink-900 border border-ink-600 px-3 py-2 focus:border-signal-500" />
+        <label
+          class="block text-sm text-paper-200 mb-1"
+          for="title"
+        >Title</label>
+        <input
+          id="title"
+          v-model="item.title"
+          type="text"
+          required
+          class="w-full rounded-md bg-ink-900 border border-ink-600 px-3 py-2 focus:border-signal-500"
+        >
       </div>
 
       <div>
-        <label class="block text-sm text-paper-200 mb-1" for="slug">Slug</label>
-        <input id="slug" v-model="item.slug" type="text" required pattern="[a-z0-9-]+"
-          class="w-full rounded-md bg-ink-900 border border-ink-600 px-3 py-2 font-mono text-sm focus:border-signal-500" />
+        <label
+          class="block text-sm text-paper-200 mb-1"
+          for="slug"
+        >Slug</label>
+        <input
+          id="slug"
+          v-model="item.slug"
+          type="text"
+          required
+          pattern="[a-z0-9-]+"
+          class="w-full rounded-md bg-ink-900 border border-ink-600 px-3 py-2 font-mono text-sm focus:border-signal-500"
+        >
       </div>
 
       <div>
-        <label class="block text-sm text-paper-200 mb-1" for="summary">Summary</label>
-        <textarea id="summary" v-model="item.summary" rows="2"
-          class="w-full rounded-md bg-ink-900 border border-ink-600 px-3 py-2 text-sm" />
+        <label
+          class="block text-sm text-paper-200 mb-1"
+          for="summary"
+        >Summary</label>
+        <textarea
+          id="summary"
+          v-model="item.summary"
+          rows="2"
+          class="w-full rounded-md bg-ink-900 border border-ink-600 px-3 py-2 text-sm"
+        />
       </div>
 
       <div v-if="item.type === 'article'">
-        <label class="block text-sm text-paper-200 mb-1" for="body">Body</label>
-        <textarea id="body" v-model="item.body" rows="10"
-          class="w-full rounded-md bg-ink-900 border border-ink-600 px-3 py-2 text-sm font-mono" />
+        <label
+          class="block text-sm text-paper-200 mb-1"
+          for="body"
+        >Body</label>
+        <textarea
+          id="body"
+          v-model="item.body"
+          rows="10"
+          class="w-full rounded-md bg-ink-900 border border-ink-600 px-3 py-2 text-sm font-mono"
+        />
       </div>
       <div v-else>
-        <label class="block text-sm text-paper-200 mb-1" for="media">{{ item.type === 'video' ? 'Video' : 'Audio' }} URL</label>
-        <input id="media" v-model="item.media_url" type="url" required
-          class="w-full rounded-md bg-ink-900 border border-ink-600 px-3 py-2 text-sm" />
+        <label
+          class="block text-sm text-paper-200 mb-1"
+          for="media"
+        >{{ item.type === 'video' ? 'Video' : 'Audio' }} URL</label>
+        <input
+          id="media"
+          v-model="item.media_url"
+          type="url"
+          required
+          class="w-full rounded-md bg-ink-900 border border-ink-600 px-3 py-2 text-sm"
+        >
       </div>
 
       <label class="flex items-center gap-2 text-sm">
-        <input v-model="item.is_premium" type="checkbox" class="rounded" />
+        <input
+          v-model="item.is_premium"
+          type="checkbox"
+          class="rounded"
+        >
         Premium content
       </label>
 
       <label class="flex items-center gap-2 text-sm">
-        <input v-model="isPublished" type="checkbox" class="rounded" />
+        <input
+          v-model="isPublished"
+          type="checkbox"
+          class="rounded"
+        >
         Published
       </label>
 
-      <p v-if="errorMessage" class="text-danger-500 text-sm">{{ errorMessage }}</p>
+      <p
+        v-if="errorMessage"
+        class="text-danger-500 text-sm"
+      >
+        {{ errorMessage }}
+      </p>
 
       <div class="flex items-center justify-between pt-2">
-        <button type="submit" :disabled="saving"
-          class="rounded-md bg-signal-500 px-4 py-2.5 font-medium text-ink-950 hover:bg-signal-400 disabled:opacity-50">
+        <button
+          type="submit"
+          :disabled="saving"
+          class="rounded-md bg-signal-500 px-4 py-2.5 font-medium text-ink-950 hover:bg-signal-400 disabled:opacity-50"
+        >
           {{ saving ? 'Saving…' : 'Save changes' }}
         </button>
-        <button type="button" class="text-sm text-danger-500 hover:underline" @click="remove">Delete</button>
+        <button
+          type="button"
+          class="text-sm text-danger-500 hover:underline"
+          @click="remove"
+        >
+          Delete
+        </button>
       </div>
     </form>
   </section>
@@ -96,7 +170,7 @@ async function save() {
     media_url: item.value.media_url,
     is_premium: item.value.is_premium,
     status: nowPublished ? 'published' : 'draft',
-    published_at: nowPublished && !wasPublished ? new Date().toISOString() : item.value.published_at
+    published_at: nowPublished && !wasPublished ? new Date().toISOString() : item.value.published_at,
   }).eq('id', itemId)
 
   saving.value = false

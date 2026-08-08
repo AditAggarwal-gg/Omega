@@ -2,25 +2,49 @@
   <div class="min-h-full flex flex-col">
     <header class="border-b border-ink-700 bg-ink-900/70 backdrop-blur-xl sticky top-0 z-40">
       <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 h-16">
-        <NuxtLink to="/" class="flex items-center gap-2 font-display text-lg text-paper-50">
-          <span class="font-display text-xl font-bold" aria-hidden="true">Ω</span>
+        <NuxtLink
+          to="/"
+          class="flex items-center gap-2 font-display text-lg text-paper-50"
+        >
+          <span
+            class="font-display text-xl font-bold"
+            aria-hidden="true"
+          >Ω</span>
           Omega
         </NuxtLink>
         <div class="flex items-center gap-6 text-sm text-paper-200">
-          <NuxtLink to="/content" class="hover:text-paper-50">Content</NuxtLink>
-          <NuxtLink to="/pricing" class="hover:text-paper-50">Premium</NuxtLink>
+          <NuxtLink
+            to="/content"
+            class="hover:text-paper-50"
+          >Content</NuxtLink>
+          <NuxtLink
+            to="/pricing"
+            class="hover:text-paper-50"
+          >Premium</NuxtLink>
           <template v-if="user">
-            <NuxtLink to="/app" class="hover:text-paper-50">Dashboard</NuxtLink>
+            <NuxtLink
+              to="/app"
+              class="hover:text-paper-50"
+            >Dashboard</NuxtLink>
           </template>
           <template v-else>
-            <NuxtLink to="/login" class="hover:text-paper-50">Sign in</NuxtLink>
-            <NuxtLink to="/signup" class="rounded-md bg-signal-500 px-3 py-1.5 font-medium text-ink-950 hover:bg-signal-400">
+            <NuxtLink
+              to="/login"
+              class="hover:text-paper-50"
+            >Sign in</NuxtLink>
+            <NuxtLink
+              to="/signup"
+              class="rounded-md bg-signal-500 px-3 py-1.5 font-medium text-ink-950 hover:bg-signal-400"
+            >
               Get started
             </NuxtLink>
           </template>
         </div>
       </nav>
-      <div class="frequency-divider" aria-hidden="true" />
+      <div
+        class="frequency-divider"
+        aria-hidden="true"
+      />
     </header>
 
     <main class="flex-1">

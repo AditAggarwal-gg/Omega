@@ -1,17 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2026-07-18',
-  devtools: { enabled: true },
 
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/supabase',
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
   ],
-
-  css: ['~/assets/css/main.css'],
+  devtools: { enabled: true },
 
   app: {
     head: {
@@ -19,24 +16,40 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'en' },
       meta: [
         { name: 'theme-color', content: '#F5F2E9' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' }
-      ]
-    }
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
+      ],
+    },
   },
 
-  // Supabase module: RLS is the real gate, but we also lock down which
-  // routes require a session at the edge so anonymous users never render
-  // authenticated shells.
-  supabase: {
-    redirect: true,
-    redirectOptions: {
-      login: '/login',
-      callback: '/confirm',
-      include: ['/app(/*)?', '/omega-admin(/*)?'],
-      exclude: ['/', '/pricing', '/content/**', '/login', '/signup', '/legal/**']
-    },
-    types: '~/types/database.types.ts'
+  css: ['~/assets/css/main.css'],
+
+  routeRules: {
+    // Public marketing + content browsing can be pre-rendered / cached at
+    // the edge. Everything under /app and /omega-admin is per-tenant and
+    // must stay dynamic.
+    '/': { prerender: true },
+    '/pricing': { prerender: true },
+    '/content/**': { swr: 3600 },
+    '/app/**': { ssr: true },
+    '/omega-admin/**': { ssr: true },
   },
+  compatibilityDate: '2026-07-18',
+
+  nitro: {
+    routeRules: {
+      '/**': {
+        headers: {
+          'X-Frame-Options': 'DENY',
+          'X-Content-Type-Options': 'nosniff',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+          'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+        },
+      },
+    },
+  },
+
+  typescript: { strict: true },
+  eslint: { config: { stylistic: true } },
 
   pwa: {
     registerType: 'autoUpdate',
@@ -51,8 +64,8 @@ export default defineNuxtConfig({
       icons: [
         { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
         { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
-        { src: '/icons/icon-512-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
-      ]
+        { src: '/icons/icon-512-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+      ],
     },
     workbox: {
       // `navigateFallback` is workbox's SPA-shell mechanism — it serves one
@@ -71,7 +84,7 @@ export default defineNuxtConfig({
           // Never cache authenticated data or API responses — tenant data
           // must always come from the network, never from a stale cache.
           urlPattern: /^https:\/\/.*\.supabase\.co\/.*$/,
-          handler: 'NetworkOnly'
+          handler: 'NetworkOnly',
         },
         {
           // Page navigations: try the network (with a short timeout so a
@@ -82,8 +95,8 @@ export default defineNuxtConfig({
           options: {
             cacheName: 'omega-pages',
             networkTimeoutSeconds: 4,
-            cacheableResponse: { statuses: [0, 200] }
-          }
+            cacheableResponse: { statuses: [0, 200] },
+          },
         },
         {
           // Static assets (JS/CSS/fonts): fine to serve instantly from
@@ -91,40 +104,27 @@ export default defineNuxtConfig({
           urlPattern: ({ request }: { request: Request }) =>
             ['style', 'script', 'worker', 'font'].includes(request.destination),
           handler: 'StaleWhileRevalidate',
-          options: { cacheName: 'omega-assets' }
-        }
-      ]
+          options: { cacheName: 'omega-assets' },
+        },
+      ],
     },
     // Service worker only builds for production (`npm run build` /
     // `generate`). Disabled in dev — a dev-mode service worker caused more
     // debugging confusion than value while actively changing routes.
-    devOptions: { enabled: false }
+    devOptions: { enabled: false },
   },
 
-  routeRules: {
-    // Public marketing + content browsing can be pre-rendered / cached at
-    // the edge. Everything under /app and /omega-admin is per-tenant and
-    // must stay dynamic.
-    '/': { prerender: true },
-    '/pricing': { prerender: true },
-    '/content/**': { swr: 3600 },
-    '/app/**': { ssr: true },
-    '/omega-admin/**': { ssr: true }
+  // Supabase module: RLS is the real gate, but we also lock down which
+  // routes require a session at the edge so anonymous users never render
+  // authenticated shells.
+  supabase: {
+    redirect: true,
+    redirectOptions: {
+      login: '/login',
+      callback: '/confirm',
+      include: ['/app(/*)?', '/omega-admin(/*)?'],
+      exclude: ['/', '/pricing', '/content/**', '/login', '/signup', '/legal/**'],
+    },
+    types: '~/types/database.types.ts',
   },
-
-  nitro: {
-    routeRules: {
-      '/**': {
-        headers: {
-          'X-Frame-Options': 'DENY',
-          'X-Content-Type-Options': 'nosniff',
-          'Referrer-Policy': 'strict-origin-when-cross-origin',
-          'Permissions-Policy': 'camera=(), microphone=(), geolocation=()'
-        }
-      }
-    }
-  },
-
-  typescript: { strict: true },
-  eslint: { config: { stylistic: true } }
 })
