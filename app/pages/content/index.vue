@@ -4,7 +4,7 @@
     <h1 class="text-3xl mb-6">Latest from every organization</h1>
 
     <div class="flex gap-2 mb-8">
-      <button v-for="t in typeFilters" :key="t.value"
+      <button v-for="t in typeFilters" :key="t.label"
         class="rounded-md border px-3 py-1.5 text-sm font-mono"
         :class="activeType === t.value ? 'border-signal-500 text-signal-500' : 'border-ink-600 text-paper-200 hover:border-ink-600'"
         @click="setType(t.value)">
@@ -40,10 +40,11 @@ useSeoMeta({ title: 'Content', description: 'Articles, video, and audio publishe
 const supabase = useSupabaseClient()
 const items = ref<any[]>([])
 const pending = ref(true)
-const activeType = ref<string | null>(null)
+const activeType = ref<'article' | 'video' | 'audio' | undefined>(undefined)
 
-const typeFilters = [
-  { label: 'All', value: null },
+type ContentType = 'article' | 'video' | 'audio' | undefined
+const typeFilters: { label: string; value: ContentType }[] = [
+  { label: 'All', value: undefined },
   { label: 'Articles', value: 'article' },
   { label: 'Video', value: 'video' },
   { label: 'Audio', value: 'audio' }
@@ -52,14 +53,14 @@ const typeFilters = [
 async function load() {
   pending.value = true
   const { data } = await supabase.rpc('list_published_content', {
-    p_org_slug: null,
+    p_org_slug: undefined,
     p_type: activeType.value
   })
   items.value = data ?? []
   pending.value = false
 }
 
-function setType(t: string | null) {
+function setType(t: 'article' | 'video' | 'audio' | undefined) {
   activeType.value = t
   load()
 }

@@ -49,7 +49,7 @@ const props = defineProps<{ contentId?: string, orgId?: string, flaggedUrl?: str
 defineEmits(['close'])
 
 const supabase = useSupabaseClient()
-const reason = ref('spam')
+const reason = ref<'spam' | 'abuse' | 'copyright' | 'misinformation' | 'other'>('spam')
 const details = ref('')
 const submitting = ref(false)
 const submitted = ref(false)

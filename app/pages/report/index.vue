@@ -51,7 +51,7 @@ const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 
 const url = ref('')
-const reason = ref('spam')
+const reason = ref<'spam' | 'abuse' | 'copyright' | 'broken_link' | 'misinformation' | 'other'>('spam')
 const details = ref('')
 const submitting = ref(false)
 const submitted = ref(false)
