@@ -1,9 +1,9 @@
 <template>
   <div class="min-h-full flex flex-col">
-    <header class="border-b border-ink-700 bg-ink-900/80 backdrop-blur sticky top-0 z-40">
+    <header class="border-b border-ink-700 bg-ink-900/70 backdrop-blur-xl sticky top-0 z-40">
       <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 h-16">
         <NuxtLink to="/" class="flex items-center gap-2 font-display text-lg text-paper-50">
-          <span class="signal-dot" aria-hidden="true" />
+          <span class="font-display text-xl font-bold" aria-hidden="true">Ω</span>
           Omega
         </NuxtLink>
         <div class="flex items-center gap-6 text-sm text-paper-200">

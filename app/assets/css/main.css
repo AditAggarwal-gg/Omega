@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   html, body, #__nuxt {
@@ -19,7 +19,6 @@
     @apply bg-signal-500/30 text-paper-50;
   }
 
-  /* Respect reduced-motion preferences everywhere */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -29,15 +28,12 @@
     }
   }
 
-  /* Visible focus ring by default, no invisible-focus anti-pattern */
   :focus-visible {
     @apply outline-none ring-2 ring-signal-500 ring-offset-2 ring-offset-ink-900;
   }
 }
 
 @layer components {
-  /* Signature element: the "on-air" signal dot used for live/status
-     indicators (org online, content published, review pending). */
   .signal-dot {
     @apply relative inline-flex h-2.5 w-2.5 rounded-full bg-live-500;
   }
@@ -55,10 +51,16 @@
   }
 
   .card {
-    @apply rounded-lg border border-ink-700 bg-ink-800 shadow-panel;
+    background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.12));
+    @apply rounded-lg border border-white/50 shadow-panel backdrop-blur-2xl backdrop-saturate-150;
   }
 
   .badge {
-    @apply inline-flex items-center gap-1 rounded-sm border border-ink-600 bg-ink-800 px-2 py-0.5 font-mono text-xs text-paper-200;
+    @apply inline-flex items-center gap-1 rounded-sm border border-ink-600 bg-ink-800 backdrop-blur-xl px-2 py-0.5 font-mono text-xs text-paper-200;
+  }
+
+  .glass-panel {
+    background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.12));
+    @apply backdrop-blur-2xl backdrop-saturate-150 border border-white/50 shadow-panel;
   }
 }
