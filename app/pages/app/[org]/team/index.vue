@@ -113,8 +113,6 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'default', middleware: 'require-manager' })
 
-const route = useRoute()
-const orgSlug = route.params.org as string
 const supabase = useSupabaseClient()
 const { membership } = useCurrentOrg()
 
